@@ -91,10 +91,10 @@ for (let index = 0; index < times.length; index++) {
 
 // TODO: Use moment.js to change the colour of the timeRowContainer depending on the time
 // TODO: (Past, Present & Future)
-// if (newTimeRow.getAttribute("time") === currentTime) {
-//     // let trueTimeRow = newTimeRow.getAttribute("time") === currentTime;
-//     newTimeRow.classList.add("present");
-// };
+if (newTimeRow.getAttribute("time") === currentTime) {
+//    // let trueTimeRow = newTimeRow.getAttribute("time") === currentTime;
+    newTimeRow.classList.add("present");
+};
 
 // PLAN: Use something similar to "$("#currentDay").text(moment().format("MMMM Do YYYY, h:mm:ss a"));"" and add it to each timeRow,
 // PLAN: Have the array use this ^ instead of strings
