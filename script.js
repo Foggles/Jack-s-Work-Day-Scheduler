@@ -57,7 +57,7 @@ for (let index = 0; index < times.length; index++) {
 
     // attacj event listner
     $(newButton).on('click', function (event) {
-        event.preventDeault();
+        event.preventDefault();
 
         // identify which row
 
@@ -87,14 +87,22 @@ for (let index = 0; index < times.length; index++) {
     // Appending it all to the container
     timeRowContainer.classList.add("time-block")
     timeRowContainer.appendChild(newTimeRow);
+
+    if (newTimeRow.getAttribute("time") === currentTime) {
+        //    // let trueTimeRow = newTimeRow.getAttribute("time") === currentTime;
+            newTimeRow.classList.add("present");
+            newTimeRow.setAttribute("timeColour:", "present")
+        } if (newTimeRow.getAttribute("time") > currentTime) {
+            newTimeRow.classList.add("future");
+            newTimeRow.setAttribute("timeColour:", "future")
+        } if (newTimeRow.getAttribute("time") < currentTime) {
+            newTimeRow.classList.add("past");
+            newTimeRow.setAttribute("timeColour:", "past")
+        }
 };
 
 // TODO: Use moment.js to change the colour of the timeRowContainer depending on the time
 // TODO: (Past, Present & Future)
-if (newTimeRow.getAttribute("time") === currentTime) {
-//    // let trueTimeRow = newTimeRow.getAttribute("time") === currentTime;
-    newTimeRow.classList.add("present");
-};
 
 // PLAN: Use something similar to "$("#currentDay").text(moment().format("MMMM Do YYYY, h:mm:ss a"));"" and add it to each timeRow,
 // PLAN: Have the array use this ^ instead of strings
