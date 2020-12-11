@@ -1,7 +1,8 @@
 let timeRowContainer = document.getElementById("timeRowContainer");
-let currentTime = moment().format("ha");
+let currentTime = moment().format("kk:00");
+let currentTimeNumber = parseInt(currentTime);
 let newTimeRow;
-console.log(currentTime)
+console.log(currentTimeNumber)
 
 
 // load time into the dom
@@ -15,11 +16,18 @@ setInterval(function () {
 // shouldn't create the timetable via raw html
 
 // Array containing all times to be used
-const times = ["7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm"];
+// const times = ["7:00", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"];
+
+// const times = ["07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"];
+
+const times = [moment().hour(7).minute(0).format("kk:00"), moment().hour(8).minute(0).format("kk:00"), moment().hour(9).minute(0).format("kk:00"), moment().hour(10).minute(0).format("kk:00"), moment().hour(11).minute(0).format("kk:00"), moment().hour(12).minute(0).format("kk:mm"), moment().hour(13).minute(0).format("kk:mm"), moment().hour(14).minute(0).format("kk:mm"), moment().hour(15).minute(0).format("kk:mm"), moment().hour(16).minute(0).format("kk:mm"), moment().hour(17).minute(0).format("kk:mm"), moment().hour(18).minute(0).format("kk:mm"), moment().hour(19).minute(0).format("kk:mm"), moment().hour(20).minute(0).format("kk:mm"), moment().hour(21).minute(0).format("kk:mm"), moment().hour(22).minute(0).format("kk:mm"), moment().hour(23).minute(0).format("kk:mm")];
 
 // for loop to build the time rows
 for (let index = 0; index < times.length; index++) {
     const time = times[index];
+
+    
+    console.log(times[index])
 
     // in each loop we create a time row
     newTimeRow = document.createElement("div");
@@ -47,11 +55,13 @@ for (let index = 0; index < times.length; index++) {
     newButtonCol.classList.add("col-2", "saveBtn");
     newButtonCol.appendChild(newButton);
 
+    let dataTime = parseInt(times[index]);
+
     // Appending all the new elements to the new row
     newTimeRow.appendChild(newTimeCol);
     newTimeRow.appendChild(newTextAreaCol);
     newTimeRow.appendChild(newButtonCol);
-    newTimeRow.setAttribute("time", times[index]);
+    newTimeRow.setAttribute("time", dataTime);
 
 
 
@@ -88,17 +98,18 @@ for (let index = 0; index < times.length; index++) {
     timeRowContainer.classList.add("time-block")
     timeRowContainer.appendChild(newTimeRow);
 
-    if (newTimeRow.getAttribute("time") === currentTime) {
-        //    // let trueTimeRow = newTimeRow.getAttribute("time") === currentTime;
-            newTimeRow.classList.add("present");
-            newTimeRow.setAttribute("timeColour:", "present")
-        } if (newTimeRow.getAttribute("time") > currentTime) {
-            newTimeRow.classList.add("future");
-            newTimeRow.setAttribute("timeColour:", "future")
-        } if (newTimeRow.getAttribute("time") < currentTime) {
-            newTimeRow.classList.add("past");
-            newTimeRow.setAttribute("timeColour:", "past")
-        }
+    if (newTimeRow.getAttribute("time") > currentTimeNumber) {
+        newTimeRow.classList.add("future");
+        newTimeRow.setAttribute("timeColour:", "future")
+    } 
+    if (newTimeRow.getAttribute("time") < currentTimeNumber) {
+        newTimeRow.classList.add("past");
+        newTimeRow.setAttribute("timeColour:", "past")
+    } 
+    else {
+        newTimeRow.classList.add("present");
+        newTimeRow.setAttribute("timeColour:", "present");
+    }
 };
 
 // TODO: Use moment.js to change the colour of the timeRowContainer depending on the time
