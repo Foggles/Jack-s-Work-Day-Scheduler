@@ -57,7 +57,7 @@ body {
     color: white;
   }
   
-  .saveBtn {
+  .saveBtnCol {
     border-left: 1px solid black;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -65,8 +65,10 @@ body {
     color: white;
   }
   
-  .saveBtn i:hover {
-    font-size: 20px;
-    transition: all .3s ease-in-out;
+  .saveBtn {
+    padding: 0;
+    border: none;
+    background: none;
+    color: white;
+    align-self: center;
   }
-  
