@@ -2,7 +2,7 @@ let timeRowContainer = document.getElementById("timeRowContainer");
 let currentTime = moment().format("kk:00");
 let currentTimeNumber = parseInt(currentTime);
 let newTimeRow;
-console.log(currentTimeNumber + ":00")
+console.log("Current hour: " + currentTimeNumber + ":00")
 
 
 // loading current time into the DOM
@@ -20,10 +20,10 @@ const times = [moment().hour(7).minute(0).format("kk:00"), moment().hour(8).minu
 
 // for loop to build the time rows
 for (let index = 0; index < times.length; index++) {
-    const time = times[index];
+    // const time = times[index];
 
 
-    console.log(times[index])
+    console.log("Time: " + times[index])
 
     // in each loop we create a time row
     newTimeRow = document.createElement("div");
@@ -42,6 +42,7 @@ for (let index = 0; index < times.length; index++) {
     newTextArea.rows = "4";
     newTextArea.cols = "65";
     newTextArea.id = "textArea";
+    newTextArea.textContent = localStorage.getItem("timeRowData" + times[index])
 
     newTextAreaCol.classList.add("col-8", "description");
     newTextAreaCol.appendChild(newTextArea);
